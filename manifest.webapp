@@ -1,0 +1,15 @@
+{
+  "name": "Whack a Poop",
+  "description": "A game that is so revolutionary.",
+  "launch_path": "/index-kaios.html",
+  "icons": {
+    "16": "/res/icons/icon16x16.png",
+    "48": "/res/icons/icon48x48.png",
+    "60": "/res/icons/icon60x60.png",
+    "128": "/res/icons/icon128x128.png"
+  },
+  "developer": {
+    "name": "jkelol111",
+    "url": "http://github.com/theyellowguy"
+  }
+}
