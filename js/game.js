@@ -68,9 +68,9 @@ function settingsPaneOpen() {
       Cookies.remove('whackapoop_settings_cheatModeEnabled');
       Cookies.remove('whackapoop_agreeSanity');
       Cookies.remove('whackapoop_whackCount');
-      reload();
+      window.reload();
     }
-  })
+  });
   settings.addButton('Close', function(value){
     $(settingsButton).removeAttr('disabled');
     settings.destroy();
