@@ -1,0 +1,28 @@
+//Checking cookies happens here.
+console.log("Checking if user has been here before...");
+if (Cookies.get('whackapoop_whackCount') == null) {
+  console.log("Not yet! Setting new cookie for click count...")
+  Cookies.set('whackapoop_whackCount', '0', { expires: 365 });
+  var whackCount = Cookies.get('whackapoop_whackCount');
+  alert("Looks like you're new here! Make yourself at home by clicking on the whack. "+
+  "The count increases as you whack more. Whack to the ultimate number and get ultimate self-satisfaction!\n\n"+
+  "NOTE: the game only saves the count locally as a cookie. Going to another computer means you lose your progress!\n"+
+  "Also, the local cookie will expire in 365 days. RIP your record if you were too busy with New Year Celebrations.\n\n"+
+  "Also for those who watch ( ͡° ͜ʖ ͡°), don't clear your cookies, you'll regret ;)");
+} else {
+  var whackCount = Cookies.get('whackapoop_whackCount');
+  console.log("User has been here before. Click count: "+whackCount);
+}
+
+console.log("Checking if user is sane or not...")
+if (Cookies.get('whackapoop_agreeSanity') == null) {
+  if (confirm("By playing whackapoop, you agree to donating your sanity. Agree?")) {
+    Cookies.set('whackapoop_agreeSanity', '1');
+  } else {
+    alert("Oh well, I guess you're not ready now. Click 'Ok' to get back to life.");
+    window.close()
+  }
+} else {
+  console.log("User is not sane already.")
+  //Do nothing :) You're not sane already!
+}
