@@ -28,10 +28,4 @@ if (Cookies.get('whackapoop_agreeSanity') == null) {
   //Do nothing :) You're not sane already!
 }
 
-$(document).ready(function(){
-
-  // jQuery methods go here...
-
-});
-
 Cookies.remove('whackapoop_agreeSanity');
