@@ -53,7 +53,7 @@ toastr.options = {
 
 //Settings pane logic here.
 function settingsPaneOpen() {
-  window.navigate("settings.html");
+  window.location.href = "settings.html";
 }
 
 document.getElementById('settingsButton').addEventListener('click', settingsPaneOpen);
