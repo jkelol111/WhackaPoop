@@ -53,7 +53,7 @@ toastr.options = {
 
 //Settings pane logic here.
 function settingsPaneOpen() {
-  window.location.href = "settings.html";
+  toastr.error('Not done yet!')
 }
 
 document.getElementById('settingsButton').addEventListener('click', settingsPaneOpen);
