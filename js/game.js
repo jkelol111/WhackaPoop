@@ -27,3 +27,56 @@ if (Cookies.get('whackapoop_agreeSanity') == null) {
   console.log("User is not sane already.")
   //Do nothing :) You're not sane already!
 }
+
+//whackapoop version here.
+var WHACKAPOOP_VERSION = '0.1';
+
+//Set toastr options here.
+toastr.options = {
+  "closeButton": false,
+  "debug": false,
+  "newestOnTop": true,
+  "progressBar": true,
+  "positionClass": "toast-top-full-width",
+  "preventDuplicates": false,
+  "onclick": null,
+  "showDuration": "300",
+  "hideDuration": "1000",
+  "timeOut": "5000",
+  "extendedTimeOut": "1000",
+  "showEasing": "swing",
+  "hideEasing": "linear",
+  "showMethod": "slideDown",
+  "hideMethod": "slideUp"
+}
+
+//Settings pane logic here.
+function settingsPaneOpen() {
+  $(settingsButton).attr('disabled', 'disabled');
+  var settings = QuickSettings.create(panelTitle='whackapoop Settings');
+  if (Cookies.get('whackapoop_settings_cheatModeEnabled') == true) {
+    settings.setValue('Cheat mode', true);
+  } else if (Cookies.get('whackapoop_settings_cheatModeEnabled') == false) {
+    settings.setValue('Cheat mode', false);
+  }
+  settings.addBoolean('Cheat mode', function(value){
+    Cookies.set('whackapoop_settings_cheatModeEnabled', value);
+    toastr["success"]('Reload settings pane', 'The settings pane needs to be reloaded for the settings to apply.');
+  });
+  settings.addButton('Reset settings & data', function(valve){
+    if (confirm("This will clear all game cookies off your device. Do you want to proceed?")) {
+      Cookies.remove('whackapoop_settings_cheatModeEnabled');
+      Cookies.remove('whackapoop_agreeSanity');
+      Cookies.remove('whackapoop_whackCount');
+      reload();
+    }
+  })
+  settings.addButton('Close', function(value){
+    $(settingsButton).removeAttr('disabled');
+    settings.destroy();
+  });
+}
+
+$(document).ready(function(){
+  $(settingsButton).click(settingsPaneOpen);
+});
