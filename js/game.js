@@ -38,7 +38,7 @@ toastr.options = {
   "debug": false,
   "newestOnTop": true,
   "progressBar": true,
-  "positionClass": "toast-top-full-width",
+  "positionClass": "toast-top-right",
   "preventDuplicates": false,
   "onclick": null,
   "showDuration": "300",
@@ -55,13 +55,10 @@ toastr.options = {
 function settingsPaneOpen() {
   $(settingsButton).attr('disabled', 'disabled');
   var settings = QuickSettings.create(0, 0, 'whackapoop Settings');
+  console.log(Cookies.get('whackapoop_settings_cheatModeEnabled'));
   settings.addBoolean('Cheat mode', Cookies.get('whackapoop_settings_cheatModeEnabled'), function(value){
-    Cookies.remove('whackapoop_settings_cheatModeEnabled');
-    if (Cookies.get('whackapoop_settings_cheatModeEnabled')) {
-      Cookies.set('whackapoop_settings_cheatModeEnabled', false);
-    } else {
-      Cookies.set('whackapoop_settings_cheatModeEnabled', true);
-    }
+    //Cookies.remove('whackapoop_settings_cheatModeEnabled');
+    Cookies.set('whackapoop_settings_cheatModeEnabled', value);
     toastr.success('Please close and open this panel again.', 'This setting change requires a panel reload');
   });
   settings.addButton('Reset settings & data', function(valve){
