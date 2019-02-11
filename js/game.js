@@ -56,4 +56,4 @@ function settingsPaneOpen() {
   window.navigate("settings.html");
 }
 
-document.getElementById('settingsButton').addEventListener('onclick', settingsPaneOpen);
+document.getElementById('settingsButton').addEventListener('click', settingsPaneOpen);
