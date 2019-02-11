@@ -56,6 +56,7 @@ function settingsPaneOpen() {
   $(settingsButton).attr('disabled', 'disabled');
   var settings = QuickSettings.create(0, 0, 'whackapoop Settings');
   settings.addBoolean('Cheat mode', Cookies.get('whackapoop_settings_cheatModeEnabled'), function(value){
+    Cookies.remove('whackapoop_settings_cheatModeEnabled');
     if (Cookies.get('whackapoop_settings_cheatModeEnabled')) {
       Cookies.set('whackapoop_settings_cheatModeEnabled', false);
     } else {
