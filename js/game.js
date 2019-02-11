@@ -55,23 +55,22 @@ toastr.options = {
 function settingsPaneOpen() {
   $(settingsButton).attr('disabled', 'disabled');
   var settings = QuickSettings.create(0, 0, 'whackapoop Settings');
-  if (Cookies.get("whackapoop_settings_cheatModeEnabled") == true) {
-    settings.addButton('Cheat mode: OFF', function(value){
+  settings.addBoolean('Cheat mode', Cookies.get('whackapoop_settings_cheatModeEnabled'), function(value){
+    if (Cookies.get('whackapoop_settings_cheatModeEnabled')) {
       Cookies.set('whackapoop_settings_cheatModeEnabled', false);
-      toastr.success('The settings pane needs to be reloaded for the settings to apply.', 'Reload settings pane');
-    });
-  } else if (Cookies.get('whackapoop_settings_cheatModeEnabled') == false) {
-    settings.addButton('Cheat mode: ON', function(value){
+    } else {
       Cookies.set('whackapoop_settings_cheatModeEnabled', true);
-      toastr.success('The settings pane needs to be reloaded for the settings to apply.', 'Reload settings pane');
-    });
-  }
+    }
+    toastr.success('Please close and open this panel again.', 'This setting change requires a panel reload');
+  });
   settings.addButton('Reset settings & data', function(valve){
     if (confirm("This will clear all game cookies off your device. Do you want to proceed?")) {
       Cookies.remove('whackapoop_settings_cheatModeEnabled');
       Cookies.remove('whackapoop_agreeSanity');
       Cookies.remove('whackapoop_whackCount');
-      reload();
+      window.location.reload(true);
+    } else {
+      //Do nothing :)
     }
   });
   settings.addButton('Close', function(value){
