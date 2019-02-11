@@ -2,7 +2,7 @@
 console.log("Checking if user has been here before...");
 if (Cookies.get('whackapoop_whackCount') == null) {
   console.log("Not yet! Setting new cookie for click count...")
-  Cookies.set('whackapoop_whackCount', '0', { expires: 365 });
+  Cookies.set('whackapoop_whackCount', 0, { expires: 365 });
   var whackCount = Cookies.get('whackapoop_whackCount');
   alert("Looks like you're new here! Make yourself at home by clicking on the whack. "+
   "The count increases as you whack more. Whack to the ultimate number and get ultimate self-satisfaction!\n\n"+
@@ -17,8 +17,8 @@ if (Cookies.get('whackapoop_whackCount') == null) {
 console.log("Checking if user is sane or not...")
 if (Cookies.get('whackapoop_agreeSanity') == null) {
   if (confirm("By playing whackapoop, you agree to donating your sanity. Agree?")) {
-    console.log("Sane prompt agreed! Insanity is garunteed!")
-    Cookies.set('whackapoop_agreeSanity', '1');
+    console.log("Sane prompt agreed! Insanity is garunteed!");
+    Cookies.set('whackapoop_agreeSanity', 1);
   } else {
     alert("Oh well, I guess you're not ready now. Click 'Ok' to get back to life.");
     window.close()
@@ -27,3 +27,11 @@ if (Cookies.get('whackapoop_agreeSanity') == null) {
   console.log("User is not sane already.")
   //Do nothing :) You're not sane already!
 }
+
+$(document).ready(function(){
+
+  // jQuery methods go here...
+
+});
+
+Cookies.remove('whackapoop_agreeSanity');
