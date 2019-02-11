@@ -60,7 +60,7 @@ function settingsPaneOpen() {
     Cookies.set('whackapoop_settings_cheatModeEnabled', value);
     toastr.success('Please close and open this panel again.', 'This setting change requires a panel reload');
   });
-  if (Cookies.set('whackapoop_settings_cheatModeEnabled')) {
+  if (Cookies.get('whackapoop_settings_cheatModeEnabled')) {
     settings.addTextArea('cheat_whackCountOverride', '', function(value){
       Cookies.set('whackapoop_whackCount', value);
     });
