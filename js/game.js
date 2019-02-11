@@ -53,36 +53,7 @@ toastr.options = {
 
 //Settings pane logic here.
 function settingsPaneOpen() {
-  $(settingsButton).attr('disabled', 'disabled');
-  var settings = QuickSettings.create(0, 0, 'whackapoop Settings');
-  var settings_cheat = Cookies.get('whackapoop_settings_cheatModeEnabled');
-  settings.addBoolean('Cheat mode', settings_cheat, function(value){
-    Cookies.set('whackapoop_settings_cheatModeEnabled', value);
-    toastr.success('Please hard reload this panel.', 'This setting change requires a page hard reload');
-  });
-  if (settings_cheat) {
-    settings.addTextArea('cheat_whackCountOverride', '', function(value){
-      Cookies.set('whackapoop_whackCount', value);
-    });
-  } else {
-    //Do nothing :)
-  }
-  settings.addButton('Reset settings & data', function(value){
-    if (confirm("This will clear all game cookies off your device. Do you want to proceed?")) {
-      Cookies.remove('whackapoop_settings_cheatModeEnabled');
-      Cookies.remove('whackapoop_agreeSanity');
-      Cookies.remove('whackapoop_whackCount');
-      window.location.reload(true);
-    } else {
-      //Do nothing :)
-    }
-  });
-  settings.addButton('Close', function(value){
-    $(settingsButton).removeAttr('disabled');
-    settings.destroy();
-  });
+  window.navigate("settings.html");
 }
 
-$(document).ready(function(){
-  $(settingsButton).click(settingsPaneOpen);
-});
+document.getElementById('settingsButton').addEventListener('onclick', settingsPaneOpen);
