@@ -19,6 +19,7 @@ if (Cookies.get('whackapoop_agreeSanity') == null) {
   if (confirm("By playing whackapoop, you agree to donating your sanity. Agree?")) {
     console.log("Sane prompt agreed! Insanity is garunteed!");
     Cookies.set('whackapoop_agreeSanity', 1, { expires: 365 });
+    Cookies.set('whackapoop_settings_cheatModeEnabled', false);
   } else {
     alert("Oh well, I guess you're not ready now. Click 'Ok' to get back to life.");
     close();
@@ -54,9 +55,17 @@ toastr.options = {
 function settingsPaneOpen() {
   $(settingsButton).attr('disabled', 'disabled');
   var settings = QuickSettings.create(0, 0, 'whackapoop Settings');
-  settings.addBoolean('Cheat mode', Cookies.get("whackapoop_settings_cheatModeEnabled"), function(value){
-    toastr.success('Reload settings pane', 'The settings pane needs to be reloaded for the settings to apply.');
-  });
+  if (Cookies.get("whackapoop_settings_cheatModeEnabled") == true) {
+    settings.addButton('Cheat mode: OFF', function(value){
+      Cookies.set('whackapoop_settings_cheatModeEnabled', false);
+      toastr.success('The settings pane needs to be reloaded for the settings to apply.', 'Reload settings pane');
+    });
+  } else if (Cookies.get('whackapoop_settings_cheatModeEnabled') == false) {
+    settings.addButton('Cheat mode: ON', function(value){
+      Cookies.set('whackapoop_settings_cheatModeEnabled', true);
+      toastr.success('The settings pane needs to be reloaded for the settings to apply.', 'Reload settings pane');
+    });
+  }
   settings.addButton('Reset settings & data', function(valve){
     if (confirm("This will clear all game cookies off your device. Do you want to proceed?")) {
       Cookies.remove('whackapoop_settings_cheatModeEnabled');
@@ -65,9 +74,8 @@ function settingsPaneOpen() {
       reload();
     }
   });
-  settings.addButton('Close & Save settings', function(value){
+  settings.addButton('Close', function(value){
     $(settingsButton).removeAttr('disabled');
-    Cookies.set('whackapoop_settings_cheatModeEnabled', settings.getValue('Cheat mode'));
     settings.destroy();
   });
 }
