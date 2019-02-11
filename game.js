@@ -53,13 +53,14 @@ toastr.options = {
 
 //Settings pane logic here.
 function settingsPaneOpen() {
+  document.getElementById('settingsButton').disabled = true;
   var settings = QuickSettings.create(0, 0, 'Settings pane');
-  var cheat_enabled = Boolean(Cookies.get('whackapoop_settings_cheatModeEnabled'));
-  settings.addBoolean('Cheat mode', cheat_enabled, function(value) {
-    Cookies.set('whackapoop_settings_cheatModeEnabled', value);
+  settings.addBoolean('Cheat mode', Boolean(Cookies.get('whackapoop_settings_cheatModeEnabled')), function(value) {
+    Cookies.set('whackapoop_settings_cheatModeEnabled', Boolean(value));
     toastr.success('Please re-open the settings panel.', 'Settings change requires panel reload')
   });
   settings.addButton('Close', function(value) {
+    document.getElementById('settingsButton').disabled = false;
     settings.destroy();
   });
 }
