@@ -55,15 +55,17 @@ toastr.options = {
 function settingsPaneOpen() {
   $(settingsButton).attr('disabled', 'disabled');
   var settings = QuickSettings.create(0, 0, 'whackapoop Settings');
-  console.log(Cookies.get('whackapoop_settings_cheatModeEnabled'));
-  settings.addBoolean('Cheat mode', Cookies.get('whackapoop_settings_cheatModeEnabled'), function(value){
+  var settings_cheat = Cookies.get('whackapoop_settings_cheatModeEnabled');
+  settings.addBoolean('Cheat mode', settings_cheat, function(value){
     Cookies.set('whackapoop_settings_cheatModeEnabled', value);
-    toastr.success('Please close and open this panel again.', 'This setting change requires a panel reload');
+    toastr.success('Please hard reload this panel.', 'This setting change requires a page hard reload');
   });
-  if (Cookies.get('whackapoop_settings_cheatModeEnabled')) {
+  if (settings_cheat) {
     settings.addTextArea('cheat_whackCountOverride', '', function(value){
       Cookies.set('whackapoop_whackCount', value);
     });
+  } else {
+    //Do nothing :)
   }
   settings.addButton('Reset settings & data', function(value){
     if (confirm("This will clear all game cookies off your device. Do you want to proceed?")) {
