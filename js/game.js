@@ -17,6 +17,7 @@ if (Cookies.get('whackapoop_whackCount') == null) {
 console.log("Checking if user is sane or not...")
 if (Cookies.get('whackapoop_agreeSanity') == null) {
   if (confirm("By playing whackapoop, you agree to donating your sanity. Agree?")) {
+    console.log("Sane prompt agreed! Insanity is garunteed!")
     Cookies.set('whackapoop_agreeSanity', '1');
   } else {
     alert("Oh well, I guess you're not ready now. Click 'Ok' to get back to life.");
