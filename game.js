@@ -61,6 +61,11 @@ function settingsPaneOpen() {
     toastr.success('Please re-open the settings panel.', 'Settings change requires panel reload')
   });
   if (Boolean(Cookies.get('whackapoop_settings_cheatModeEnabled'))) {
+    settings.setValue('Cheat mode', true);
+  } else {
+    settings.setValue('Cheat mode', false);
+  }
+  if (Boolean(Cookies.get('whackapoop_settings_cheatModeEnabled'))) {
     settings.addTextArea('cheat_changeClickNumber', '', function(value) {
       Cookies.set('whackapoop_whackCount', value);
       toastr.success('Please check if click count is changed.', 'Settings changed successfully');
