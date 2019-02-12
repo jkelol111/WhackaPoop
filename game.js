@@ -20,6 +20,7 @@ if (Cookies.get('whackapoop_agreeSanity') == null) {
     console.log("Sane prompt agreed! Insanity is garunteed!");
     Cookies.set('whackapoop_agreeSanity', 1, { expires: 365 });
     Cookies.set('whackapoop_settings_cheatModeEnabled', false);
+    Cookies.set('whackapoop_settings_cheat_autoClickerOn', false);
   } else {
     alert("Oh well, I guess you're not ready now. Click 'Ok' to get back to life.");
     close();
@@ -59,7 +60,23 @@ function settingsPaneOpen() {
     Cookies.set('whackapoop_settings_cheatModeEnabled', Boolean(value));
     toastr.success('Please re-open the settings panel.', 'Settings change requires panel reload')
   });
-  settings.addButton('Reset data  & settings', function(value) {
+  if (Boolean(Cookies.get('whackapoop_settings_cheatModeEnabled'))) {
+    settings.addTextArea('cheat_changeClickNumber', '', function(value) {
+      Cookies.set('whackapoop_whackCount', value);
+      toastr.success('Please check if click count is changed.', 'Settings changed successfully');
+    });
+  } else {
+    //Do nothing.
+  }
+  if (Boolean(Cookies.get('whackapoop_settings_cheatModeEnabled'))) {
+    settings.addBoolean('cheat_autoClickerOn', Boolean(Cookies.get('whackapoop_settings_cheat_autoClickerOn')), function(value) {
+      Cookies.set('whackapoop_settings_cheat_autoClickerOn', Boolean(value));
+      toastr.success('Please check if auto clicker is working.', 'Settings changed successfully');
+    });
+  } else {
+    //Do nothing.
+  }
+  settings.addButton('Reset data & settings', function(value) {
     if (confirm('This will clear all your progress and settings! Do you want to proceed?')) {
       Cookies.remove('whackapoop_settings_cheatModeEnabled');
       Cookies.remove('whackapoop_agreeSanity');
@@ -71,6 +88,7 @@ function settingsPaneOpen() {
   });
   settings.addButton('Close', function(value) {
     document.getElementById('settingsButton').disabled = false;
+    document.getElementById('null').remove();
     settings.destroy();
   });
 }
