@@ -26,7 +26,6 @@ try {
     localStorage.setItem('whackapoop_whackCount', 0);
     var whackCount = localStorage.getItem('whackapoop_whackCount');
     localStorage.setItem('whackapoop_settings_cheatModeEnabled', false);
-    localStorage.setItem('whackapoop_settings_cheat_autoClickerOn', false);
     alert("Looks like you're new here! Make yourself at home by clicking on the whack. "+
     "The count increases as you whack more. Whack to the ultimate number and get ultimate self-satisfaction!\n\n"+
     "Made by jkelol111 (Nam).");
@@ -48,7 +47,18 @@ try {
     //Do nothing :) You're not sane already!
   }
 
-  //Autoclicker cheat!
+  //Autoclicker cheat (execute in JS console)!
+  function autoClicker(toggle, clickPerSec) {
+    if (Boolean(localStorage.getItem('whackapoop_settings_cheatModeEnabled'))) {
+      if (toggle) {
+        toastr.success('autoClicker interval/sec: '+clickPerSec, 'autoClicker on!');
+      } else {
+        toastr.success('autoClicker off!');
+      }
+    } else {
+      throw 'Cheat mode is off! This command cannot be executed.';
+    }
+  }
 
 
   //Settings pane logic here.
