@@ -49,14 +49,6 @@ try {
   function settingsPaneOpen() {
     document.getElementById('settingsButton').disabled = true;
     var settings = QuickSettings.create(0, 0, 'Settings pane');
-    if (Boolean(localStorage.getItem('whackapoop_settings_cheatModeEnabled'))) {
-      //Do nothing
-    } else {
-      settings.hideControl('cheat_changeClickNumber');
-      settings.removeControl('cheat_changeClickNumber');
-      settings.hideControl('cheat_autoClickerOn');
-      settings.removeControl('cheat_autoClickerOn');
-    }
     settings.setDraggable(false);
     settings.addBoolean('Cheat mode', Boolean(localStorage.getItem('whackapoop_settings_cheatModeEnabled')), function(value) {
       localStorage.setItem('whackapoop_settings_cheatModeEnabled', Boolean(value));
@@ -70,6 +62,14 @@ try {
         localStorage.setItem('whackapoop_settings_cheat_autoClickerOn', Boolean(value));
         toastr.success('Please check if auto clicker is working.', 'Settings changed successfully');
     });
+    if (Boolean(localStorage.getItem('whackapoop_settings_cheatModeEnabled'))) {
+      //Do nothing
+    } else {
+      settings.hideControl('cheat_changeClickNumber');
+      settings.removeControl('cheat_changeClickNumber');
+      settings.hideControl('cheat_autoClickerOn');
+      settings.removeControl('cheat_autoClickerOn');
+    }
     settings.addButton('Reset data & settings', function(value) {
       if (confirm('This will clear all your progress and settings! Do you want to proceed?')) {
         localStorage.removeItem('whackapoop_settings_cheatModeEnabled');
