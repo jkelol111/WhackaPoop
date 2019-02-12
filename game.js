@@ -59,6 +59,16 @@ function settingsPaneOpen() {
     Cookies.set('whackapoop_settings_cheatModeEnabled', Boolean(value));
     toastr.success('Please re-open the settings panel.', 'Settings change requires panel reload')
   });
+  settings.addButton('Reset data  & settings', function(value) {
+    if (confirm('This will clear all your progress and settings! Do you want to proceed?')) {
+      Cookies.remove('whackapoop_settings_cheatModeEnabled');
+      Cookies.remove('whackapoop_agreeSanity');
+      Cookies.remove('whackapoop_whackCount');
+      window.location.reload(true);
+    } else {
+      //Do nothing.
+    }
+  });
   settings.addButton('Close', function(value) {
     document.getElementById('settingsButton').disabled = false;
     settings.destroy();
