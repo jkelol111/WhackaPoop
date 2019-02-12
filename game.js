@@ -56,6 +56,7 @@ toastr.options = {
 function settingsPaneOpen() {
   document.getElementById('settingsButton').disabled = true;
   var settings = QuickSettings.create(0, 0, 'Settings pane');
+  settings.setDraggable(false);
   settings.addBoolean('Cheat mode', Boolean(Cookies.get('whackapoop_settings_cheatModeEnabled')), function(value) {
     Cookies.set('whackapoop_settings_cheatModeEnabled', Boolean(value));
     toastr.success('Please re-open the settings panel.', 'Settings change requires panel reload')
@@ -64,20 +65,10 @@ function settingsPaneOpen() {
       Cookies.set('whackapoop_whackCount', value);
       toastr.success('Please check if click count is changed.', 'Settings changed successfully');
   });
-  if (Boolean(Cookies.get('whackapoop_settings_cheatModeEnabled'))) {
-    //Do nothing
-  } else {
-    settings.removeControl('cheat_changeClickNumber');
-  }
   settings.addBoolean('cheat_autoClickerOn', Boolean(Cookies.get('whackapoop_settings_cheat_autoClickerOn')), function(value) {
       Cookies.set('whackapoop_settings_cheat_autoClickerOn', Boolean(value));
       toastr.success('Please check if auto clicker is working.', 'Settings changed successfully');
   });
-  if (Boolean(Cookies.get('whackapoop_settings_cheatModeEnabled'))) {
-    //Do nothing
-  } else {
-    settings.removeControl('whackapoop_settings_cheat_autoClickerOn');
-  }
   settings.addButton('Reset data & settings', function(value) {
     if (confirm('This will clear all your progress and settings! Do you want to proceed?')) {
       Cookies.remove('whackapoop_settings_cheatModeEnabled');
@@ -93,6 +84,14 @@ function settingsPaneOpen() {
     document.getElementById('null').remove();
     settings.destroy();
   });
+  if (Boolean(Cookies.get('whackapoop_settings_cheatModeEnabled'))) {
+    //Do nothing
+  } else {
+    settings.hideControl('whackapoop_settings_cheatModeEnabled');
+    settings.removeControl('cheat_changeClickNumber');
+    settings.hideControl('whackapoop_settings_cheatModeEnabled');
+    settings.removeControl('whackapoop_settings_cheat_autoClickerOn');
+  }
   settings.saveInLocalStorage('whackapoop_settings_layout');
 }
 
