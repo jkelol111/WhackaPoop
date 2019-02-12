@@ -1,26 +1,24 @@
 //Checking cookies happens here.
 console.log("Checking if user has been here before...");
-if (Cookies.get('whackapoop_whackCount') == null) {
+if (localStorage.getItem('whackapoop_whackCount') == null) {
   console.log("Not yet! Setting new cookie for click count...")
-  Cookies.set('whackapoop_whackCount', 0, { expires: 365 });
-  var whackCount = Cookies.get('whackapoop_whackCount');
+  localStorage.setItem('whackapoop_whackCount', 0);
+  var whackCount = localStorage.getItem('whackapoop_whackCount');
   alert("Looks like you're new here! Make yourself at home by clicking on the whack. "+
   "The count increases as you whack more. Whack to the ultimate number and get ultimate self-satisfaction!\n\n"+
-  "NOTE: the game only saves the count locally as a cookie. Going to another computer means you lose your progress!\n"+
-  "Also, the local cookie will expire in 365 days. RIP your record if you were too busy with New Year Celebrations.\n\n"+
-  "Also for those who watch ( ͡° ͜ʖ ͡°), don't clear your cookies, you'll regret ;)");
+  "Made by jkelol111 (Nam).");
 } else {
-  var whackCount = Cookies.get('whackapoop_whackCount');
+  var whackCount = localStorage.getItem('whackapoop_whackCount');
   console.log("User has been here before. Click count: "+whackCount);
 }
 
 console.log("Checking if user is sane or not...")
-if (Cookies.get('whackapoop_agreeSanity') == null) {
+if (localStorage.getItem('whackapoop_agreeSanity') == null) {
   if (confirm("By playing whackapoop, you agree to donating your sanity. Agree?")) {
     console.log("Sane prompt agreed! Insanity is garunteed!");
-    Cookies.set('whackapoop_agreeSanity', 1, { expires: 365 });
-    Cookies.set('whackapoop_settings_cheatModeEnabled', false);
-    Cookies.set('whackapoop_settings_cheat_autoClickerOn', false);
+    localStorage.setItem('whackapoop_agreeSanity', true);
+    localStorage.setItem('whackapoop_settings_cheatModeEnabled', false);
+    localStorage.setItem('whackapoop_settings_cheat_autoClickerOn', false);
   } else {
     alert("Oh well, I guess you're not ready now. Click 'Ok' to get back to life.");
     close();
@@ -56,24 +54,33 @@ toastr.options = {
 function settingsPaneOpen() {
   document.getElementById('settingsButton').disabled = true;
   var settings = QuickSettings.create(0, 0, 'Settings pane');
+  if (Boolean(localStorage.getItem('whackapoop_settings_cheatModeEnabled'))) {
+    //Do nothing
+  } else {
+    settings.hideControl('whackapoop_settings_cheatModeEnabled');
+    settings.removeControl('cheat_changeClickNumber');
+    settings.hideControl('whackapoop_settings_cheatModeEnabled');
+    settings.removeControl('whackapoop_settings_cheat_autoClickerOn');
+  }
   settings.setDraggable(false);
-  settings.addBoolean('Cheat mode', Boolean(Cookies.get('whackapoop_settings_cheatModeEnabled')), function(value) {
-    Cookies.set('whackapoop_settings_cheatModeEnabled', Boolean(value));
+  settings.addBoolean('Cheat mode', Boolean(localStorage.getItem('whackapoop_settings_cheatModeEnabled')), function(value) {
+    localStorage.setItem('whackapoop_settings_cheatModeEnabled', Boolean(value));
     toastr.success('Please re-open the settings panel.', 'Settings change requires panel reload')
   });
-  settings.addTextArea('cheat_changeClickNumber', '', function(value) {
-      Cookies.set('whackapoop_whackCount', value);
+  settings.addTextArea('cheat_changeClickNumber', localStorage.getItem('whackapoop_whackCount'), function(value) {
+      localStorage.setItem('whackapoop_whackCount', value);
       toastr.success('Please check if click count is changed.', 'Settings changed successfully');
   });
-  settings.addBoolean('cheat_autoClickerOn', Boolean(Cookies.get('whackapoop_settings_cheat_autoClickerOn')), function(value) {
-      Cookies.set('whackapoop_settings_cheat_autoClickerOn', Boolean(value));
+  settings.addBoolean('cheat_autoClickerOn', Boolean(localStorage.getItem('whackapoop_settings_cheat_autoClickerOn')), function(value) {
+      localStorage.setItem('whackapoop_settings_cheat_autoClickerOn', Boolean(value));
       toastr.success('Please check if auto clicker is working.', 'Settings changed successfully');
   });
   settings.addButton('Reset data & settings', function(value) {
     if (confirm('This will clear all your progress and settings! Do you want to proceed?')) {
-      Cookies.remove('whackapoop_settings_cheatModeEnabled');
-      Cookies.remove('whackapoop_agreeSanity');
-      Cookies.remove('whackapoop_whackCount');
+      localStorage.removeItem('whackapoop_settings_cheatModeEnabled');
+      localStorage.removeItem('whackapoop_agreeSanity');
+      localStorage.removeItem('whackapoop_whackCount');
+      localStorage.removeItem('whackapoop_settings_layout');
       window.location.reload(true);
     } else {
       //Do nothing.
@@ -84,14 +91,6 @@ function settingsPaneOpen() {
     document.getElementById('null').remove();
     settings.destroy();
   });
-  if (Boolean(Cookies.get('whackapoop_settings_cheatModeEnabled'))) {
-    //Do nothing
-  } else {
-    settings.hideControl('whackapoop_settings_cheatModeEnabled');
-    settings.removeControl('cheat_changeClickNumber');
-    settings.hideControl('whackapoop_settings_cheatModeEnabled');
-    settings.removeControl('whackapoop_settings_cheat_autoClickerOn');
-  }
   settings.saveInLocalStorage('whackapoop_settings_layout');
 }
 
