@@ -60,26 +60,23 @@ function settingsPaneOpen() {
     Cookies.set('whackapoop_settings_cheatModeEnabled', Boolean(value));
     toastr.success('Please re-open the settings panel.', 'Settings change requires panel reload')
   });
-  if (Boolean(Cookies.get('whackapoop_settings_cheatModeEnabled'))) {
-    settings.setValue('Cheat mode', true);
-  } else {
-    settings.setValue('Cheat mode', false);
-  }
-  if (Boolean(Cookies.get('whackapoop_settings_cheatModeEnabled'))) {
-    settings.addTextArea('cheat_changeClickNumber', '', function(value) {
+  settings.addTextArea('cheat_changeClickNumber', '', function(value) {
       Cookies.set('whackapoop_whackCount', value);
       toastr.success('Please check if click count is changed.', 'Settings changed successfully');
-    });
-  } else {
-    //Do nothing.
-  }
+  });
   if (Boolean(Cookies.get('whackapoop_settings_cheatModeEnabled'))) {
-    settings.addBoolean('cheat_autoClickerOn', Boolean(Cookies.get('whackapoop_settings_cheat_autoClickerOn')), function(value) {
+    //Do nothing
+  } else {
+    settings.removeControl('cheat_changeClickNumber');
+  }
+  settings.addBoolean('cheat_autoClickerOn', Boolean(Cookies.get('whackapoop_settings_cheat_autoClickerOn')), function(value) {
       Cookies.set('whackapoop_settings_cheat_autoClickerOn', Boolean(value));
       toastr.success('Please check if auto clicker is working.', 'Settings changed successfully');
-    });
+  });
+  if (Boolean(Cookies.get('whackapoop_settings_cheatModeEnabled'))) {
+    //Do nothing
   } else {
-    //Do nothing.
+    settings.removeControl('whackapoop_settings_cheat_autoClickerOn');
   }
   settings.addButton('Reset data & settings', function(value) {
     if (confirm('This will clear all your progress and settings! Do you want to proceed?')) {
@@ -96,6 +93,7 @@ function settingsPaneOpen() {
     document.getElementById('null').remove();
     settings.destroy();
   });
+  settings.saveInLocalStorage('whackapoop_settings_layout');
 }
 
 document.getElementById('settingsButton').addEventListener('click', settingsPaneOpen);
