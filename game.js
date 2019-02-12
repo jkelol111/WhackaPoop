@@ -49,7 +49,7 @@ try {
 
   //Autoclicker cheat (execute in JS console)!
   function autoClicker(toggle, clickPerSec) {
-    if (Boolean(localStorage.getItem('whackapoop_settings_cheatModeEnabled')) == true) {
+    if (Boolean(localStorage.getItem('whackapoop_settings_cheatModeEnabled'))) {
       if (toggle) {
         toastr.success('autoClicker interval/sec: '+clickPerSec, 'autoClicker on!');
       } else {
