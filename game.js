@@ -50,7 +50,20 @@ try {
   //Settings pane logic here.
   function settingsPaneOpen() {
     document.getElementById('settingsButton').disabled = true;
+    if (Boolean(localStorage.getItem('whackapoop_settings_cheatModeEnabled'))) {
+      //Do nothing
+    } else {
+      var readSettingsLayout = JSON.parse(localStorage.getItem('whackapoop_settings_layout'));
+      var newSettingsLayout = JSON.stringify({'Cheat mode':false});
+      localStorage.setItem('whackapoop_settings_layout', newSettingsLayout);
+    }
     var settings = QuickSettings.create(0, 0, 'Settings pane');
+    if (Boolean(localStorage.getItem('whackapoop_settings_cheatModeEnabled'))) {
+      //Do nothing
+    } else {
+      settings.hideControl('cheat_changeClickNumber');
+      settings.hideControl('cheat_autoClickerOn');
+    }
     settings.setDraggable(false);
     settings.addBoolean('Cheat mode', Boolean(localStorage.getItem('whackapoop_settings_cheatModeEnabled')), function(value) {
       localStorage.setItem('whackapoop_settings_cheatModeEnabled', Boolean(value));
@@ -62,14 +75,13 @@ try {
     });
     settings.addBoolean('cheat_autoClickerOn', Boolean(localStorage.getItem('whackapoop_settings_cheat_autoClickerOn')), function(value) {
         localStorage.setItem('whackapoop_settings_cheat_autoClickerOn', Boolean(value));
+        if (localStorage.getItem('whackapoop_settings_cheat_autoClickerOn')) {
+          startAutoclicker();
+        } else {
+          stopAutoclicker();
+        }
         toastr.success('Please check if auto clicker is working.', 'Settings changed successfully');
     });
-    if (Boolean(localStorage.getItem('whackapoop_settings_cheatModeEnabled'))) {
-      //Do nothing
-    } else {
-      settings.hideControl('cheat_changeClickNumber');
-      settings.hideControl('cheat_autoClickerOn');
-    }
     settings.addButton('Reset data & settings', function(value) {
       if (confirm('This will clear all your progress and settings! Do you want to proceed?')) {
         localStorage.removeItem('whackapoop_settings_cheatModeEnabled');
