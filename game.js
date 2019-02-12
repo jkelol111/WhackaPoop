@@ -5,7 +5,7 @@ try {
 
   //Set toastr options here.
   toastr.options = {
-    "closeButton": false,
+    "closeButton": true,
     "debug": false,
     "newestOnTop": true,
     "progressBar": true,
@@ -44,7 +44,6 @@ try {
   } else {
     //Do nothing :) You're not sane already!
   }
-
   //Settings pane logic here.
   function settingsPaneOpen() {
     document.getElementById('settingsButton').disabled = true;
@@ -66,9 +65,7 @@ try {
       //Do nothing
     } else {
       settings.hideControl('cheat_changeClickNumber');
-      settings.removeControl('cheat_changeClickNumber');
       settings.hideControl('cheat_autoClickerOn');
-      settings.removeControl('cheat_autoClickerOn');
     }
     settings.addButton('Reset data & settings', function(value) {
       if (confirm('This will clear all your progress and settings! Do you want to proceed?')) {
