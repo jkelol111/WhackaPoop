@@ -35,7 +35,7 @@ try {
   }
 
   //Load count value into label
-  document.getElementById('countLabel').innerHTML(whackCount);
+  document.getElementById('countLabel').innerHTML = whackCount;
 
   if (localStorage.getItem('whackapoop_agreeSanity') == null) {
     if (confirm("By playing whackapoop, you agree to donating your sanity. Agree?")) {
