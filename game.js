@@ -87,11 +87,7 @@ try {
     
     settings.addButton('Reset data & settings', function(value) {
       if (confirm('This will clear all your progress and settings! Do you want to proceed?')) {
-        localStorage.removeItem('whackapoop_settings_debugModeEnabled');
-        localStorage.removeItem('whackapoop_settings_cheatModeEnabled');
-        localStorage.removeItem('whackapoop_agreeSanity');
-        localStorage.removeItem('whackapoop_whackCount');
-        localStorage.removeItem('whackapoop_settings_layout');
+        localStorage.clear();
         window.location.reload(true);
       } else {
         //Do nothing.
