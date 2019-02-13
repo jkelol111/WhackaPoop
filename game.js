@@ -48,7 +48,7 @@ try {
 
   //Autoclicker cheat (execute in JS console)!
   function autoClicker(toggle, clickPerSec) {
-    if (Boolean(localStorage.getItem('whackapoop_settings_cheatModeEnabled'))) {
+    if (localStorage.getItem('whackapoop_settings_cheatModeEnabled') == 'true') {
       if (toggle) {
         toastr.success('autoClicker interval/sec: '+clickPerSec, 'autoClicker on!');
       } else {
@@ -61,7 +61,7 @@ try {
 
   //Change count cheat (execute in JS console)!
   function customCount(count) {
-    if (Boolean(localStorage.getItem('whackapoop_settings_cheatModeEnabled'))) {
+    if (localStorage.getItem('whackapoop_settings_cheatModeEnabled') == 'true') {
       localStorage.setItem('whackapoop_whackCount', count);
       document.getElementById('countLabel').innerHTML = count;
       toastr.success('Set whackCount to: '+count, 'customCount executed!');
