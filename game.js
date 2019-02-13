@@ -136,7 +136,7 @@ try {
     document.getElementById('countLabel').innerHTML = localStorage.getItem('whackapoop_whackCount');
     setTimeout(function() {
       document.getElementById('whackImage').src = 'res/whackf1.png';
-    }, 500);
+    }, 300);
   }
 
   // //Unclick handler for poop
