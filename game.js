@@ -107,15 +107,17 @@ try {
     var sharePane = QuickSettings.create(0, 0, 'Share whackapoop');
     sharePane.setDraggable(false);
     sharePane.addButton('Share to Twitter...', function(value) {
-      window.open('https://twitter.com/intent/tweet');
+      window.open('https://twitter.com/intent/tweet?text=jkelol111.github.io/whackapoop');
       document.getElementById('shareButton').disabled = false;
       sharePane.destroy();
     });
     sharePane.addButton('Share to Facebook...', function(value) {
+      window.open('https://www.facebook.com/sharer/sharer.php?u=jkelol111.github.io/whackapoop');
       document.getElementById('shareButton').disabled = false;
       sharePane.destroy();
     });
     sharePane.addButton('Share to Reddit...', function(value) {
+      window.open('http://www.reddit.com/submit?url=jkelol111.github.io/whackapoop');
       document.getElementById('shareButton').disabled = false;
       sharePane.destroy();
     });
