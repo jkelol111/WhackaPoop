@@ -134,17 +134,20 @@ try {
     document.getElementById('whackImage').src = 'res/whackf2.png';
     localStorage.setItem('whackapoop_whackCount', parseInt(localStorage.getItem('whackapoop_whackCount'))+1);
     document.getElementById('countLabel').innerHTML = localStorage.getItem('whackapoop_whackCount');
+    setTimeout(function() {
+      document.getElementById('whackImage').src = 'res/whackf1.png';
+    }, 500);
   }
 
-  //Unclick handler for poop
-  function whackUnClickHandler() {
-    document.getElementById('whackImage').src = 'res/whackf1.png';
-  }
+  // //Unclick handler for poop
+  // function whackUnClickHandler() {
+  //   document.getElementById('whackImage').src = 'res/whackf1.png';
+  // }
 
   document.getElementById('settingsButton').addEventListener('click', settingsPaneOpen);
   document.getElementById('shareButton').addEventListener('click', sharePaneOpen);
   document.getElementById('whackImage').addEventListener('click', whackClickHandler);
-  document.getElementById('whackImage').addEventListener('onmouseup', whackUnClickHandler);
+  //document.getElementById('whackImage').addEventListener('onmouseup', whackUnClickHandler);
 } catch (err) {
   toastr.error(err.message, "An error has occured!");
 }
