@@ -55,6 +55,7 @@ try {
         toastr.success('autoClicker off!');
       }
     } else {
+      toastr.error('Cheat mode is off! This command cannot be executed.', 'autoClicker failed execution!');
       throw 'Cheat mode is off! This command cannot be executed.';
     }
   }
@@ -66,6 +67,7 @@ try {
       document.getElementById('countLabel').innerHTML = count;
       toastr.success('Set whackCount to: '+count, 'customCount executed!');
     } else {
+      toastr.error('Cheat mode is off! This command cannot be executed.', 'customCount failed execution!');
       throw 'Cheat mode is off! This command cannot be executed.';
     }
   }
