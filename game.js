@@ -129,8 +129,17 @@ try {
     });
   }
 
+  //Real magic happens here!
+  function whackClickHandler() {
+    document.getElementById('whackImage').src = 'res/whackf2.png';
+    localStorage.setItem('whackapoop_whackCount', localStorage.getItem('whackapoop_whackCount')+1);
+    document.getElementById('countLabel').innerHTML = localStorage.getItem('whackapoop_whackCount');
+    document.getElementById('whackImage').src = 'res/whackf1.png';
+  }
+
   document.getElementById('settingsButton').addEventListener('click', settingsPaneOpen);
   document.getElementById('shareButton').addEventListener('click', sharePaneOpen);
+  document.getElementById('whackImage').addEventListener('click', whackClickHandler);
 } catch (err) {
   toastr.error(err.message, "An error has occured!");
 }
