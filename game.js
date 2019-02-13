@@ -134,7 +134,9 @@ try {
     document.getElementById('whackImage').src = 'res/whackf2.png';
     localStorage.setItem('whackapoop_whackCount', parseInt(localStorage.getItem('whackapoop_whackCount'))+1);
     document.getElementById('countLabel').innerHTML = localStorage.getItem('whackapoop_whackCount');
-    document.getElementById('whackImage').src = 'res/whackf1.png';
+    setTimeOut(function() {
+      document.getElementById('whackImage').src = 'res/whackf1.png';
+    }, 1000);
   }
 
   document.getElementById('settingsButton').addEventListener('click', settingsPaneOpen);
