@@ -60,6 +60,17 @@ try {
     }
   }
 
+  //Change count cheat (execute in JS console)!
+  function customCount(count) {
+    if (Boolean(localStorage.getItem('whackapoop_settings_cheatModeEnabled'))) {
+      localStorage.setItem('whackapoop_whackCount', count);
+      document.getElementById('countLabel').innerHTML = count;
+      toastr.success('Set whackCount to: '+count, 'customCount executed!');
+    } else {
+      throw 'Cheat mode is off! This command cannot be executed.';
+    }
+  }
+
 
   //Settings pane logic here.
   function settingsPaneOpen() {
