@@ -132,7 +132,7 @@ try {
   //Real magic happens here!
   function whackClickHandler() {
     document.getElementById('whackImage').src = 'res/whackf2.png';
-    localStorage.setItem('whackapoop_whackCount', localStorage.getItem('whackapoop_whackCount')+1);
+    localStorage.setItem('whackapoop_whackCount', parseInt(localStorage.getItem('whackapoop_whackCount'))+1);
     document.getElementById('countLabel').innerHTML = localStorage.getItem('whackapoop_whackCount');
     document.getElementById('whackImage').src = 'res/whackf1.png';
   }
