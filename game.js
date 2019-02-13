@@ -25,7 +25,6 @@ try {
   if (localStorage.getItem('whackapoop_whackCount') == null) {
     localStorage.setItem('whackapoop_whackCount', 0);
     var whackCount = localStorage.getItem('whackapoop_whackCount');
-    localStorage.setItem('whackapoop_settings_cheatModeEnabled', false);
     alert("Looks like you're new here! Make yourself at home by clicking on the whack. "+
     "The count increases as you whack more. Whack to the ultimate number and get ultimate self-satisfaction!\n\n"+
     "Made by jkelol111 (Nam).");
@@ -88,7 +87,7 @@ try {
     
     settings.addButton('Reset data & settings', function(value) {
       if (confirm('This will clear all your progress and settings! Do you want to proceed?')) {
-        localStorage.removeItem('whackapoop_settings_debugModeEnabled')
+        localStorage.removeItem('whackapoop_settings_debugModeEnabled');
         localStorage.removeItem('whackapoop_settings_cheatModeEnabled');
         localStorage.removeItem('whackapoop_agreeSanity');
         localStorage.removeItem('whackapoop_whackCount');
