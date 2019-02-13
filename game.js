@@ -66,12 +66,18 @@ try {
     document.getElementById('settingsButton').disabled = true;
     var settings = QuickSettings.create(0, 0, 'Settings pane');
     settings.setDraggable(false);
+
+    settings.addBoolean('Debug mode', Boolean(localStorage.getItem('whackapoop_settings_debugModeEnabled')), function(value) {
+      localStorage.setItem('whackapoop_settings_debugModeEnabled', value);
+    })
+
     settings.addBoolean('Cheat mode', Boolean(localStorage.getItem('whackapoop_settings_cheatModeEnabled')), function(value) {
       localStorage.setItem('whackapoop_settings_cheatModeEnabled', value);
     });
     
     settings.addButton('Reset data & settings', function(value) {
       if (confirm('This will clear all your progress and settings! Do you want to proceed?')) {
+        localStorage.removeItem('whackapoop_settings_debugModeEnabled')
         localStorage.removeItem('whackapoop_settings_cheatModeEnabled');
         localStorage.removeItem('whackapoop_agreeSanity');
         localStorage.removeItem('whackapoop_whackCount');
@@ -96,12 +102,19 @@ try {
     sharePane.setDraggable(false);
     sharePane.addButton('Share to Twitter...', function(value) {
       window.open('https://twitter.com/intent/tweet');
+      document.getElementById('shareButton').disabled = false;
       sharePane.destroy();
     });
     sharePane.addButton('Share to Facebook...', function(value) {
+      document.getElementById('shareButton').disabled = false;
+      sharePane.destroy();
+    });
+    sharePane.addButton('Share to Reddit...', function(value) {
+      document.getElementById('shareButton').disabled = false;
       sharePane.destroy();
     });
     sharePane.addButton('Close', function(value) {
+      document.getElementById('shareButton').disabled = false;
       sharePane.destroy();
     });
   }
