@@ -67,8 +67,7 @@ try {
     var settings = QuickSettings.create(0, 0, 'Settings pane');
     settings.setDraggable(false);
     settings.addBoolean('Cheat mode', Boolean(localStorage.getItem('whackapoop_settings_cheatModeEnabled')), function(value) {
-      localStorage.setItem('whackapoop_settings_cheatModeEnabled', Boolean(value));
-      toastr.success('😈', 'Settings changed')
+      localStorage.setItem('whackapoop_settings_cheatModeEnabled', value);
     });
     
     settings.addButton('Reset data & settings', function(value) {
@@ -90,7 +89,25 @@ try {
     settings.saveInLocalStorage('whackapoop_settings_layout');
   }
 
+  //Share pane logic here
+  function sharePaneOpen() {
+    document.getElementById('shareButton').disabled = true;
+    var sharePane = QuickSettings.create(0, 0, 'Share whackapoop');
+    sharePane.setDraggable(false);
+    sharePane.addButton('Share to Twitter...', function(value) {
+      window.open('https://twitter.com/intent/tweet');
+      sharePane.destroy();
+    });
+    sharePane.addButton('Share to Facebook...', function(value) {
+      sharePane.destroy();
+    });
+    sharePane.addButton('Close', function(value) {
+      sharePane.destroy();
+    });
+  }
+
   document.getElementById('settingsButton').addEventListener('click', settingsPaneOpen);
+  document.getElementById('shareButton').addEventListener('click', sharePaneOpen);
 } catch (err) {
   toastr.error(err.message, "An error has occured!");
 }
