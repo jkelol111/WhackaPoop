@@ -1,7 +1,7 @@
 //Checking cookies happens here.
 try {
   //whackapoop version here.
-  var WHACKAPOOP_VERSION = '0.1.1';
+  var WHACKAPOOP_VERSION = '0.1.0.1';
 
   //Set toastr options here.
   toastr.options = {
@@ -23,8 +23,8 @@ try {
   }
 
   //Cache images before prompts appear
-  document.getElementById('whackImage').src = 'res/whackf2';
-  document.getElementById('whackImage').src = 'res/whackf1';
+  document.getElementById('whackImage').src = 'res/whackf2.png';
+  document.getElementById('whackImage').src = 'res/whackf1.png';
 
   if (localStorage.getItem('whackapoop_whackCount') == null) {
     localStorage.setItem('whackapoop_whackCount', 0);
@@ -51,16 +51,16 @@ try {
   }
 
   //Changelog messagebox logic
-  if (localStorage.getItem('whackapoop_version_old') != WHACKAPOOP_VERSION) {
-    var reader = new FileReader();
-    reader.onload = function(e) {
-      var text = reader.result;
-    }
-    reader.readAsText('changelog.txt', 'utf-8');
-    alert(text);
-  } else {
-    //Do nothing.
-  }
+  // if (localStorage.getItem('whackapoop_version_old') != WHACKAPOOP_VERSION) {
+  //   var reader = new FileReader();
+  //   reader.onload = function(e) {
+  //     var text = reader.result;
+  //   }
+  //   reader.readAsText('/changelog.txt', 'utf-8');
+  //   alert(text);
+  // } else {
+  //   //Do nothing.
+  // }
 
   //Autoclicker cheat (execute in JS console)!
   function autoClicker(toggle, clickPerSec) {

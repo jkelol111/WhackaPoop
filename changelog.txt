@@ -3,3 +3,7 @@ Features:
 - Display changelog messagebox upon update.
 Bug fixes/improvements:
 - Caches both image frames -> No more missed frames when whacking.
+
+version zero dot one dot zero dot one:
+Bug fixes/improvements:
+- Fixed tiny bug.
