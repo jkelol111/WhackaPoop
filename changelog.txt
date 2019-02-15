@@ -1,3 +1,7 @@
+version zero dot one dot zero dot four
+Bug fixes/improvements:
+- Tiny bug squashed in logger.
+
 version zero dot one dot zero dot three
 Features:
 - Added logging function (debug mode).

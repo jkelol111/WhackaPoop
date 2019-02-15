@@ -1,7 +1,7 @@
 //Checking cookies happens here.
 try {
   //whackapoop version here.
-  var WHACKAPOOP_VERSION = '0.1.1';
+  var WHACKAPOOP_VERSION = '0.1.0.4';
 
   //Set toastr options here.
   toastr.options = {
@@ -66,7 +66,7 @@ try {
   //Logger function (activates verbose when debug mode is ON)
   function logger(process, type, string) {
     if (localStorage.getItem('whackapoop_settings_debugModeEnabled') == 'true') {
-      console.log('['+process=': '+type+'] '+string);
+      console.log('['+process+': '+type+'] '+string);
     } else {
       console.log(string);
     }
