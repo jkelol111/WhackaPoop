@@ -1,7 +1,7 @@
 //Checking cookies happens here.
 try {
   //whackapoop version here.
-  var WHACKAPOOP_VERSION = '0.1';
+  var WHACKAPOOP_VERSION = '0.1.1';
 
   //Set toastr options here.
   toastr.options = {
@@ -21,6 +21,10 @@ try {
     "showMethod": "slideDown",
     "hideMethod": "slideUp"
   }
+
+  //Cache images before prompts appear
+  document.getElementById('whackImage').src = 'res/whackf2';
+  document.getElementById('whackImage').src = 'res/whackf1';
 
   if (localStorage.getItem('whackapoop_whackCount') == null) {
     localStorage.setItem('whackapoop_whackCount', 0);
@@ -44,6 +48,18 @@ try {
     }
   } else {
     //Do nothing :) You're not sane already!
+  }
+
+  //Changelog messagebox logic
+  if (localStorage.getItem('whackapoop_version_old') != WHACKAPOOP_VERSION) {
+    var reader = new FileReader();
+    reader.onload = function(e) {
+      var text = reader.result;
+    }
+    reader.readAsText('changelog.txt', 'utf-8');
+    alert(text);
+  } else {
+    //Do nothing.
   }
 
   //Autoclicker cheat (execute in JS console)!
@@ -86,7 +102,7 @@ try {
     settings.addBoolean('Cheat mode', Boolean(localStorage.getItem('whackapoop_settings_cheatModeEnabled')), function(value) {
       localStorage.setItem('whackapoop_settings_cheatModeEnabled', value);
     });
-    
+
     settings.addButton('Reset data & settings', function(value) {
       if (confirm('This will clear all your progress and settings! Do you want to proceed?')) {
         localStorage.clear();
