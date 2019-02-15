@@ -1,7 +1,7 @@
 //Checking cookies happens here.
 try {
   //whackapoop version here.
-  var WHACKAPOOP_VERSION = '0.1.0.5';
+  var WHACKAPOOP_VERSION = '0.1.0.6';
 
   //Set toastr options here.
   toastr.options = {
@@ -176,5 +176,6 @@ try {
   document.getElementById('whackImage').addEventListener('click', whackClickHandler);
   //document.getElementById('whackImage').addEventListener('onmouseup', whackUnClickHandler);
 } catch (err) {
+  console.log('Critical error: '+err.message);
   toastr.error(err.message, "An error has occured!");
 }

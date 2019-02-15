@@ -1,3 +1,7 @@
+version zero dot one dot zero dot six
+Bug fixes/improvements:
+- Logs now appear in JS console.
+
 version zero dot one dot zero dot five
 Bug fixes/improvements:
 - Fixed up the changelog messagebox
