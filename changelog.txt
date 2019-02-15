@@ -1,3 +1,7 @@
+version zero dot one dot zero dot five
+Bug fixes/improvements:
+- Fixed up the changelog messagebox
+
 version zero dot one dot zero dot four
 Bug fixes/improvements:
 - Tiny bug squashed in logger.
@@ -7,10 +11,10 @@ Features:
 - Added logging function (debug mode).
 
 version zero dot one dot zero dot two:
-Bug fixes/improvements:
-- Fixed tiny bug.
 Features:
 - Display changelog messagebox upon update.
+Bug fixes/improvements:
+- Fixed tiny bug.
 
 version zero dot one dot zero dot one:
 Bug fixes/improvements:

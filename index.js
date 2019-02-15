@@ -1,7 +1,7 @@
 //Checking cookies happens here.
 try {
   //whackapoop version here.
-  var WHACKAPOOP_VERSION = '0.1.0.4';
+  var WHACKAPOOP_VERSION = '0.1.0.5';
 
   //Set toastr options here.
   toastr.options = {
@@ -55,9 +55,10 @@ try {
     localStorage.setItem('whackapoop_version_old', WHACKAPOOP_VERSION);
   } else {
     if (localStorage.getItem('whackapoop_version_old') != WHACKAPOOP_VERSION) {
-    fetch('file.txt')
+    fetch('changelog.txt')
                     .then(response => response.text())
                     .then(text => alert(text))
+    localStorage.setItem('whackapoop_version_old', WHACKAPOOP_VERSION);
     } else {
       //Do nothing.
     }
