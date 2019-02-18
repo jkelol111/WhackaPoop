@@ -1,7 +1,7 @@
 //Checking cookies happens here.
 try {
   //whackapoop version here.
-  var WHACKAPOOP_VERSION = '0.1.0.6';
+  var WHACKAPOOP_VERSION = '0.1.1';
 
   //Set toastr options here.
   toastr.options = {
@@ -160,21 +160,21 @@ try {
   function whackClickHandler() {
     document.getElementById('whackImage').src = 'res/whackf2.png';
     localStorage.setItem('whackapoop_whackCount', parseInt(localStorage.getItem('whackapoop_whackCount'))+1);
+    if (localStorage.setItem('whackapoop_whackCount') == 1987) {
+      window.open('https://www.youtube.com/watch?v=dQw4w9WgXcQ');
+      alert('Today is your special day, amigo.');
+    } else {
+      //Do nothing.
+    }
     document.getElementById('countLabel').innerHTML = localStorage.getItem('whackapoop_whackCount');
     setTimeout(function() {
       document.getElementById('whackImage').src = 'res/whackf1.png';
     }, 100);
   }
 
-  // //Unclick handler for poop
-  // function whackUnClickHandler() {
-  //   document.getElementById('whackImage').src = 'res/whackf1.png';
-  // }
-
   document.getElementById('settingsButton').addEventListener('click', settingsPaneOpen);
   document.getElementById('shareButton').addEventListener('click', sharePaneOpen);
   document.getElementById('whackImage').addEventListener('click', whackClickHandler);
-  //document.getElementById('whackImage').addEventListener('onmouseup', whackUnClickHandler);
 } catch (err) {
   console.log('Critical error: '+err.message);
   toastr.error(err.message, "An error has occured!");
