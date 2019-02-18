@@ -1,7 +1,7 @@
 //Checking cookies happens here.
 try {
   //whackapoop version here.
-  var WHACKAPOOP_VERSION = '0.1.1.2';
+  var WHACKAPOOP_VERSION = '0.1.1.3';
 
   //Set toastr options here.
   toastr.options = {
@@ -22,7 +22,7 @@ try {
     "hideMethod": "slideUp"
   }
 
-  //Cache images before prompts appear
+  //Cache images before prompts appear.
   document.getElementById('whackImage').src = 'res/whackf2.png';
   document.getElementById('whackImage').src = 'res/whackf1.png';
 
@@ -164,7 +164,7 @@ try {
       window.open('https://www.youtube.com/watch?v=dQw4w9WgXcQ');
       alert('Today is your special day, amigo.');
     } else  if (localStorage.getItem('whackapoop_whackCount') == 1991){
-      window.open('https://www.youtube.com/watch?v=MJdz3i44dIc');
+      window.open('https://youtu.be/MJdz3i44dIc?t=6');
       alert('This is not a game made by jkelol111.');
     } else {
       //Do nothing.
