@@ -160,7 +160,7 @@ try {
   function whackClickHandler() {
     document.getElementById('whackImage').src = 'res/whackf2.png';
     localStorage.setItem('whackapoop_whackCount', parseInt(localStorage.getItem('whackapoop_whackCount'))+1);
-    if (localStorage.setItem('whackapoop_whackCount') == 1987) {
+    if (localStorage.getItem('whackapoop_whackCount') == 1987) {
       window.open('https://www.youtube.com/watch?v=dQw4w9WgXcQ');
       alert('Today is your special day, amigo.');
     } else {
