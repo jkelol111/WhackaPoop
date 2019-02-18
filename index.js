@@ -1,7 +1,7 @@
 //Checking cookies happens here.
 try {
   //whackapoop version here.
-  var WHACKAPOOP_VERSION = '0.1.1.1';
+  var WHACKAPOOP_VERSION = '0.1.1.2';
 
   //Set toastr options here.
   toastr.options = {
@@ -163,6 +163,9 @@ try {
     if (localStorage.getItem('whackapoop_whackCount') == 1987) {
       window.open('https://www.youtube.com/watch?v=dQw4w9WgXcQ');
       alert('Today is your special day, amigo.');
+    } else  if (localStorage.getItem('whackapoop_whackCount') == 1991){
+      window.open('https://www.youtube.com/watch?v=MJdz3i44dIc');
+      alert('This is not a game made by jkelol111.');
     } else {
       //Do nothing.
     }
