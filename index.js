@@ -1,7 +1,7 @@
 //Checking cookies happens here.
 try {
   //whackapoop version here.
-  var WHACKAPOOP_VERSION = '0.1.1';
+  var WHACKAPOOP_VERSION = '0.1.1.1';
 
   //Set toastr options here.
   toastr.options = {
